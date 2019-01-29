@@ -25,3 +25,9 @@ We get an array of hashes. We first have to access the element in the array and 
 
 Q9. Why do we use prepared statements when performing database operations?
 This is for safety reasons to avoid SQL injection and to protect our data.
+
+Q10. What do they take in as their arguments?
+they take the parameter that we need in order to find them (id and address)
+
+Q11. What are their return values?
+They return the object with the given id or the one with the matching address.
