@@ -1,11 +1,11 @@
 Q1. Where are we instantiating instances of the Property class?
-In the the initialize function.
+In the console when we define a new object with Property.new().
 
 Q2. Where are we defining the SQL that enables us to save the ruby Property object into the database?
-The pg gem allows us to define SQL in the ruby functions and acts like a translator between the two.
+In the save function the pg gem allows us to define SQL in the ruby functions and acts like a translator between the two.
 
 Q3. In console.rb, which lines modify the database?
-The ones that call functions in my case it’s 26 to 35.
+The ones that call functions in my case it’s 26 to 35 (only save, update and delete are the ones that modify the database).
 
 Q4. Why do we not define the id of a Property object at the point we instantiate it (‘new it up’)? 
 Because we want the database to create a unique id, not for us to define it, as we are prone to make mistakes.
@@ -15,13 +15,13 @@ In the save function When we add new object to the database we ask the SQL to re
 @id = db.exec_prepared("save", values)[0]['id'].to_i
 
 Q6. Why do we put a guard (an ‘if’ clause) on the @id attribute in the constructor?
-So we only assign id’s that exist. 
+first it doesn't exist and we only assign it once it's created by the SQL
 
 Q7. Why are some of the CRUD actions represented by instance methods, and others, class methods? 
 It depends where the responsibility lies: if we want something to be executed on a larger scale that affects more than one object then a class should execute it, if it’s something smaller that only affects one class, class method is the one we should use.
 
 Q8. What type of data structure is returned by db.exec() and db.exec_prepared(), and how do we index into it to pull out a desired attribute?
-We get an array of hashes. We first have to access the element in the array and depending what we need we may also have to extract the information from the hash. 
+it's like an array of hashes (pg object). We first have to access the element in the array and depending what we need we may also have to extract the information from the hash. 
 
 Q9. Why do we use prepared statements when performing database operations?
 This is for safety reasons to avoid SQL injection and to protect our data.
